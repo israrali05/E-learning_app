@@ -10,7 +10,7 @@ class DashboardCategoriesModel{
 
  static List<DashboardCategoriesModel> list=[
   DashboardCategoriesModel('JS', 'Java Script', '10 Lessons', null),
-   DashboardCategoriesModel('F', 'FLutter', '20 Lessons', null),
+   DashboardCategoriesModel('F', 'Flutter', '20 Lessons', null),
    DashboardCategoriesModel('P', 'Python', '50 Lessons', null),
    DashboardCategoriesModel('H', 'HTML', '50 Lessons', null),
    DashboardCategoriesModel('K', 'Kotlin', '100 Lessons', null),
