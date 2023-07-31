@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/features/authentication/model/user/user_model.dart';
 import '../../controller/signup_controller.dart';
 class SignUpFormWidget extends StatelessWidget {
   const SignUpFormWidget({
@@ -51,7 +52,7 @@ class SignUpFormWidget extends StatelessWidget {
             const SizedBox(height: 10,),
             TextFormField(
               controller: controller.phoneNo,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 label: Text("Enter Phone Number"),
                 prefixIcon: Icon(Icons.email_outlined),
@@ -92,10 +93,17 @@ class SignUpFormWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
                       if(formKey_.currentState!.validate()){
-                      SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                      // SignUpController.instance.registerUser(controller.email.text.trim(), controller.password.text.trim());
+                        final user = UserModel(
+                            phoneNo: controller.phoneNo.text.trim(),
+                            fullName: controller.fullName.text.trim(),
+                            password: controller.password.text.trim(),
+                            email: controller.email.text.trim());
+                        SignUpController.instance.createUser(user);
+
                       }
                     },
-                    child: Text('Login'.toUpperCase()))),
+                    child: Text('SignUp'.toUpperCase()))),
           ],
         ),
       ),

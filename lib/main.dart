@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:untitled/repository/authentication_repository/authentication_repository.dart';
 import 'package:untitled/res/routes/routes.dart';
 import 'features/authentication/views/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
-await Firebase.initializeApp(
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+   Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+).then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.native,
       getPages: AppRoutes.appRoutes(),
-      home: const SplashScreen(),
+      home: CircularProgressIndicator(),
     );
   }
 }

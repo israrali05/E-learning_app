@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../controller/otp_controller.dart';
 class OtpScreen extends StatelessWidget {
   const OtpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var otp;
+    var otpController = Get.put(OTPController());
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(20),
-            child: Column(
+            child: Column( 
          mainAxisAlignment: MainAxisAlignment.center,
               children: [
                  Text(
@@ -39,6 +44,10 @@ class OtpScreen extends StatelessWidget {
                   numberOfFields: 6,
                   fillColor: Colors.black.withOpacity(0.1),
                   filled: true,
+                  onSubmit: (code){
+                    otp = code;
+                    OTPController.instance.verifyOTP(otp);
+                  },
                 ),
                 const SizedBox(
                   height: 20,
@@ -46,7 +55,9 @@ class OtpScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      OTPController.instance.verifyOTP(otp);
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.white),

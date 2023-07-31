@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../repository/authentication_repository/authentication_repository.dart';
+
 class DashboardAppBar extends StatelessWidget implements PreferredSize{
   const DashboardAppBar({
     super.key,
@@ -28,7 +30,9 @@ class DashboardAppBar extends StatelessWidget implements PreferredSize{
           decoration: BoxDecoration(
               color: Colors.black12, borderRadius: BorderRadius.circular(20)),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthenticationRepository.instance.logout();
+            },
             icon: const Icon(
               Icons.person,
             ),
